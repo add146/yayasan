@@ -185,12 +185,12 @@ export default function AdminSiswa() {
 
     return (
         <div className="animate-fade-in">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Kelola Siswa</h1>
-                    <p className="text-gray-600">Manajemen data siswa terdaftar</p>
+                    <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Kelola Siswa</h1>
+                    <p className="text-sm text-gray-600">Manajemen data siswa terdaftar</p>
                 </div>
-                <button onClick={() => setShowModal(true)} className="btn btn-primary">
+                <button onClick={() => setShowModal(true)} className="btn btn-primary w-full sm:w-auto">
                     <Plus className="w-4 h-4 mr-2" /> Tambah Siswa
                 </button>
             </div>
@@ -226,79 +226,81 @@ export default function AdminSiswa() {
                 {loading ? (
                     <div className="flex justify-center py-12"><div className="spinner" /></div>
                 ) : (
-                    <table className="w-full">
-                        <thead className="bg-gray-50 border-b border-gray-100">
-                            <tr>
-                                <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Kode</th>
-                                <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Nama Siswa</th>
-                                <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Asal Sekolah</th>
-                                <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Gelombang</th>
-                                <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Status</th>
-                                <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Tanggal</th>
-                                <th className="text-right px-4 py-3 text-sm font-medium text-gray-600">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredSiswa.map((item) => (
-                                <tr key={item.id_siswa} className="border-b border-gray-50 hover:bg-gray-50">
-                                    <td className="px-4 py-3 text-sm font-mono text-gray-600">{item.kode_siswa?.slice(0, 8)}</td>
-                                    <td className="px-4 py-3">
-                                        <p className="font-medium text-gray-900">{item.nama_siswa}</p>
-                                        <p className="text-sm text-gray-500">{item.jenis_kelamin}</p>
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-gray-600">{item.asal_sekolah || '-'}</td>
-                                    <td className="px-4 py-3 text-sm text-gray-600">{item.nama_gelombang || '-'}</td>
-                                    <td className="px-4 py-3">
-                                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(item.status_siswa)}`}>
-                                            {item.status_siswa}
-                                        </span>
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-gray-600">
-                                        {new Date(item.tanggal_post).toLocaleDateString('id-ID')}
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <div className="flex items-center justify-end gap-1">
-                                            <button
-                                                onClick={() => updateStatus(item.id_siswa, 'Diterima')}
-                                                className="p-2 text-green-600 hover:bg-green-50 rounded-lg"
-                                                title="Terima"
-                                            >
-                                                <CheckCircle className="w-4 h-4" />
-                                            </button>
-                                            <button
-                                                onClick={() => updateStatus(item.id_siswa, 'Ditolak')}
-                                                className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
-                                                title="Tolak"
-                                            >
-                                                <XCircle className="w-4 h-4" />
-                                            </button>
-                                            <button
-                                                onClick={() => updateStatus(item.id_siswa, 'Menunggu')}
-                                                className="p-2 text-yellow-600 hover:bg-yellow-50 rounded-lg"
-                                                title="Pending"
-                                            >
-                                                <Clock className="w-4 h-4" />
-                                            </button>
-                                            <button
-                                                onClick={() => deleteSiswa(item.id_siswa)}
-                                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg"
-                                                title="Hapus"
-                                            >
-                                                <Trash2 className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                            {filteredSiswa.length === 0 && (
+                    <div className="overflow-x-auto">
+                        <table className="w-full min-w-[700px]">
+                            <thead className="bg-gray-50 border-b border-gray-100">
                                 <tr>
-                                    <td colSpan={7} className="px-4 py-12 text-center text-gray-500">
-                                        Belum ada data siswa
-                                    </td>
+                                    <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Kode</th>
+                                    <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Nama Siswa</th>
+                                    <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Asal Sekolah</th>
+                                    <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Gelombang</th>
+                                    <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Status</th>
+                                    <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Tanggal</th>
+                                    <th className="text-right px-4 py-3 text-sm font-medium text-gray-600">Aksi</th>
                                 </tr>
-                            )}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {filteredSiswa.map((item) => (
+                                    <tr key={item.id_siswa} className="border-b border-gray-50 hover:bg-gray-50">
+                                        <td className="px-4 py-3 text-sm font-mono text-gray-600">{item.kode_siswa?.slice(0, 8)}</td>
+                                        <td className="px-4 py-3">
+                                            <p className="font-medium text-gray-900">{item.nama_siswa}</p>
+                                            <p className="text-sm text-gray-500">{item.jenis_kelamin}</p>
+                                        </td>
+                                        <td className="px-4 py-3 text-sm text-gray-600">{item.asal_sekolah || '-'}</td>
+                                        <td className="px-4 py-3 text-sm text-gray-600">{item.nama_gelombang || '-'}</td>
+                                        <td className="px-4 py-3">
+                                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(item.status_siswa)}`}>
+                                                {item.status_siswa}
+                                            </span>
+                                        </td>
+                                        <td className="px-4 py-3 text-sm text-gray-600">
+                                            {new Date(item.tanggal_post).toLocaleDateString('id-ID')}
+                                        </td>
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center justify-end gap-1">
+                                                <button
+                                                    onClick={() => updateStatus(item.id_siswa, 'Diterima')}
+                                                    className="p-2 text-green-600 hover:bg-green-50 rounded-lg"
+                                                    title="Terima"
+                                                >
+                                                    <CheckCircle className="w-4 h-4" />
+                                                </button>
+                                                <button
+                                                    onClick={() => updateStatus(item.id_siswa, 'Ditolak')}
+                                                    className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                                                    title="Tolak"
+                                                >
+                                                    <XCircle className="w-4 h-4" />
+                                                </button>
+                                                <button
+                                                    onClick={() => updateStatus(item.id_siswa, 'Menunggu')}
+                                                    className="p-2 text-yellow-600 hover:bg-yellow-50 rounded-lg"
+                                                    title="Pending"
+                                                >
+                                                    <Clock className="w-4 h-4" />
+                                                </button>
+                                                <button
+                                                    onClick={() => deleteSiswa(item.id_siswa)}
+                                                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg"
+                                                    title="Hapus"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                                {filteredSiswa.length === 0 && (
+                                    <tr>
+                                        <td colSpan={7} className="px-4 py-12 text-center text-gray-500">
+                                            Belum ada data siswa
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
                 )}
             </div>
 

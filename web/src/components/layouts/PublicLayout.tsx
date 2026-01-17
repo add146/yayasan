@@ -2,7 +2,7 @@ import { Outlet, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Menu, X, Phone, Mail, Facebook, Instagram, Youtube, ChevronDown } from 'lucide-react';
 import { useKonfigurasiStore } from '../../lib/store';
-import { getImageUrl } from '../../lib/api';
+import { getImageUrl, API_URL } from '../../lib/api';
 
 interface Halaman {
     id_halaman: number;
@@ -23,7 +23,7 @@ export default function PublicLayout() {
 
     const fetchHalaman = async () => {
         try {
-            const res = await fetch('/api/halaman');
+            const res = await fetch(`${API_URL}/api/halaman`);
             const data = await res.json();
             setHalamanProfil(data.data || []);
         } catch (error) {

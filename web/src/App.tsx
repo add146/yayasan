@@ -33,6 +33,7 @@ import AdminGelombang from './pages/admin/Gelombang';
 import AdminJenjangPendidikan from './pages/admin/JenjangPendidikan';
 import AdminProfile from './pages/admin/Profile';
 import AdminHalaman from './pages/admin/Halaman';
+import AdminPesan from './pages/admin/Pesan';
 
 // Components
 import ProtectedRoute from './components/ProtectedRoute';
@@ -84,6 +85,7 @@ function App() {
                 <Route path="program" element={<AdminJenjangPendidikan />} />
                 <Route path="profile" element={<AdminProfile />} />
                 <Route path="halaman" element={<AdminHalaman />} />
+                <Route path="pesan" element={<AdminPesan />} />
             </Route>
 
             {/* 404 */}

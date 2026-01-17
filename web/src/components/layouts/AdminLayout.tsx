@@ -2,7 +2,7 @@ import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import {
     LayoutDashboard, Newspaper, Image, Users, UserCheck, Settings,
-    LogOut, Menu, X, ChevronRight, GraduationCap, Building, Trophy, Layers, Calendar, BookOpen, FileText
+    LogOut, Menu, X, ChevronRight, GraduationCap, Building, Trophy, Layers, Calendar, BookOpen, FileText, Mail
 } from 'lucide-react';
 import { useAuthStore } from '../../lib/store';
 
@@ -12,6 +12,7 @@ const sidebarLinks = [
     { to: '/admin/galeri', icon: Image, label: 'Galeri' },
     { to: '/admin/slider', icon: Layers, label: 'Slider' },
     { to: '/admin/halaman', icon: FileText, label: 'Halaman Profil' },
+    { to: '/admin/pesan', icon: Mail, label: 'Pesan Kontak' },
     { to: '/admin/siswa', icon: GraduationCap, label: 'Siswa' },
     { to: '/admin/staff', icon: Users, label: 'Staff' },
     { to: '/admin/fasilitas', icon: Building, label: 'Fasilitas' },

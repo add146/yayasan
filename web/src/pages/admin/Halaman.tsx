@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Plus, Trash2, X, Edit2, Eye, EyeOff, GripVertical } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { API_URL } from '../../lib/api';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 interface Halaman {
     id_halaman: number;
@@ -32,7 +35,7 @@ export default function AdminHalaman() {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch('/api/halaman/admin', {
+            const res = await fetch(`${API_URL}/api/halaman/admin`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
@@ -80,8 +83,8 @@ export default function AdminHalaman() {
         try {
             const token = localStorage.getItem('token');
             const url = editingItem
-                ? `/api/halaman/${editingItem.id_halaman}`
-                : '/api/halaman';
+                ? `${API_URL}/api/halaman/${editingItem.id_halaman}`
+                : `${API_URL}/api/halaman`;
             const method = editingItem ? 'PUT' : 'POST';
 
             const res = await fetch(url, {
@@ -106,7 +109,7 @@ export default function AdminHalaman() {
         if (!confirm('Yakin ingin menghapus halaman ini?')) return;
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch(`/api/halaman/${id}`, {
+            const res = await fetch(`${API_URL}/api/halaman/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` },
             });
@@ -122,7 +125,7 @@ export default function AdminHalaman() {
         try {
             const token = localStorage.getItem('token');
             const newStatus = item.status === 'Publish' ? 'Draft' : 'Publish';
-            await fetch(`/api/halaman/${item.id_halaman}`, {
+            await fetch(`${API_URL}/api/halaman/${item.id_halaman}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -193,8 +196,8 @@ export default function AdminHalaman() {
                                         <button
                                             onClick={() => toggleStatus(item)}
                                             className={`px-2 py-1 rounded-full text-xs font-medium ${item.status === 'Publish'
-                                                    ? 'bg-green-100 text-green-700'
-                                                    : 'bg-gray-100 text-gray-600'
+                                                ? 'bg-green-100 text-green-700'
+                                                : 'bg-gray-100 text-gray-600'
                                                 }`}
                                         >
                                             {item.status === 'Publish' ? (
@@ -280,36 +283,31 @@ export default function AdminHalaman() {
                             </div>
 
                             <div>
-                                <label className="form-label">Konten (HTML)</label>
-                                <p className="text-xs text-gray-500 mb-2">
-                                    Anda bisa menggunakan tag HTML seperti &lt;h2&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt;, dll.
-                                </p>
-                                <textarea
-                                    value={form.konten}
-                                    onChange={(e) => setForm({ ...form, konten: e.target.value })}
-                                    className="form-input font-mono text-sm"
-                                    rows={15}
-                                    placeholder="<h2>Judul Section</h2>
-<p>Isi konten halaman...</p>
-
-<h3>Sub Judul</h3>
-<ul>
-    <li>Item 1</li>
-    <li>Item 2</li>
-</ul>"
-                                />
-                            </div>
-
-                            {/* Preview */}
-                            {form.konten && (
-                                <div>
-                                    <label className="form-label">Preview</label>
-                                    <div
-                                        className="border border-gray-200 rounded-lg p-4 bg-gray-50 prose max-w-none"
-                                        dangerouslySetInnerHTML={{ __html: form.konten }}
+                                <label className="form-label">Konten</label>
+                                <div className="bg-white min-h-[300px]">
+                                    <ReactQuill
+                                        theme="snow"
+                                        value={form.konten}
+                                        onChange={(value) => setForm({ ...form, konten: value })}
+                                        modules={{
+                                            toolbar: [
+                                                [{ header: [1, 2, 3, false] }],
+                                                ['bold', 'italic', 'underline', 'strike'],
+                                                [{ list: 'ordered' }, { list: 'bullet' }],
+                                                [{ align: [] }],
+                                                ['link', 'image'],
+                                                ['clean'],
+                                            ],
+                                        }}
+                                        formats={[
+                                            'header', 'bold', 'italic', 'underline', 'strike',
+                                            'list', 'bullet', 'align', 'link', 'image'
+                                        ]}
+                                        placeholder="Tulis konten halaman di sini..."
+                                        style={{ minHeight: '250px' }}
                                     />
                                 </div>
-                            )}
+                            </div>
 
                             <div className="flex justify-end gap-2 pt-4 border-t">
                                 <button type="button" onClick={closeModal} className="btn btn-outline">

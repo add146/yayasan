@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
+import { API_URL } from '../../lib/api';
 
 interface Halaman {
     id_halaman: number;
@@ -19,7 +20,7 @@ export default function HalamanDetail() {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const res = await fetch(`/api/halaman/${slug}`);
+                const res = await fetch(`${API_URL}/api/halaman/${slug}`);
                 const data = await res.json();
                 if (data.success && data.data) {
                     setHalaman(data.data);

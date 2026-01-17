@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useKonfigurasiStore } from '../../lib/store';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { API_URL } from '../../lib/api';
 
 export default function Kontak() {
     const { config } = useKonfigurasiStore();
@@ -11,11 +12,24 @@ export default function Kontak() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        // Simulate sending
-        await new Promise(r => setTimeout(r, 1000));
-        toast.success('Pesan berhasil dikirim!');
-        setForm({ nama: '', email: '', pesan: '' });
-        setLoading(false);
+        try {
+            const res = await fetch(`${API_URL}/api/pesan`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(form),
+            });
+            const data = await res.json();
+            if (data.success) {
+                toast.success('Pesan berhasil dikirim!');
+                setForm({ nama: '', email: '', pesan: '' });
+            } else {
+                toast.error(data.message || 'Gagal mengirim pesan');
+            }
+        } catch (error) {
+            toast.error('Terjadi kesalahan, silakan coba lagi');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
