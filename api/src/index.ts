@@ -16,6 +16,7 @@ import gelombang from './routes/gelombang';
 import jenjangPendidikan from './routes/jenjang';
 import halaman from './routes/halaman';
 import pesan from './routes/pesan';
+import dashboard from './routes/dashboard';
 
 // Types
 export interface Env {
@@ -58,6 +59,7 @@ app.route('/api/gelombang', gelombang);
 app.route('/api/jenjang-pendidikan', jenjangPendidikan);
 app.route('/api/halaman', halaman);
 app.route('/api/pesan', pesan);
+app.route('/api/dashboard', dashboard);
 
 // 404 handler
 app.notFound((c) => {
