@@ -1,0 +1,15 @@
+name = "sekolah-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+JWT_SECRET = "your-secret-key-change-in-production"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "sekolah-db"
+database_id = "your-database-id"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "sekolah-files"
