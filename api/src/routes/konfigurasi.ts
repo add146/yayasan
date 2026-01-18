@@ -36,6 +36,9 @@ konfigurasi.put('/', authMiddleware, adminMiddleware, async (c) => {
           tagline = COALESCE(?, tagline),
           deskripsi = COALESCE(?, deskripsi),
           keywords = COALESCE(?, keywords),
+          meta_title = COALESCE(?, meta_title),
+          meta_description = COALESCE(?, meta_description),
+          og_image = COALESCE(?, og_image),
           email = COALESCE(?, email),
           telepon = COALESCE(?, telepon),
           whatsapp = COALESCE(?, whatsapp),
@@ -77,6 +80,7 @@ konfigurasi.put('/', authMiddleware, adminMiddleware, async (c) => {
         WHERE id_konfigurasi = ?
       `).bind(
                 body.nama_website, body.tagline, body.deskripsi, body.keywords,
+                body.meta_title, body.meta_description, body.og_image,
                 body.email, body.telepon, body.whatsapp, body.alamat, body.google_map,
                 body.facebook, body.twitter, body.instagram, body.youtube, body.linkedin,
                 body.logo, body.icon, body.favicon, body.about_us,

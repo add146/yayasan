@@ -9,6 +9,9 @@ interface Konfigurasi {
     tagline: string;
     deskripsi: string;
     keywords: string;
+    meta_title: string;
+    meta_description: string;
+    og_image: string;
     email: string;
     telepon: string;
     whatsapp: string;
@@ -60,6 +63,9 @@ export default function AdminKonfigurasi() {
         tagline: '',
         deskripsi: '',
         keywords: '',
+        meta_title: '',
+        meta_description: '',
+        og_image: '',
         email: '',
         telepon: '',
         whatsapp: '',
@@ -208,6 +214,53 @@ export default function AdminKonfigurasi() {
                                 className="form-input"
                                 placeholder="keyword1, keyword2, keyword3"
                             />
+                        </div>
+                        <div className="md:col-span-2">
+                            <label className="form-label">Meta Title (SEO) - Judul saat share di media sosial</label>
+                            <input
+                                type="text"
+                                value={form.meta_title}
+                                onChange={(e) => setForm({ ...form, meta_title: e.target.value })}
+                                className="form-input"
+                                placeholder="Contoh: Yayasan Media Hikmah - Pendidikan Berkualitas"
+                            />
+                        </div>
+                        <div className="md:col-span-2">
+                            <label className="form-label">Meta Description (SEO) - Deskripsi saat share di media sosial</label>
+                            <textarea
+                                value={form.meta_description}
+                                onChange={(e) => setForm({ ...form, meta_description: e.target.value })}
+                                className="form-input"
+                                rows={2}
+                                placeholder="Deskripsi singkat yang muncul di link preview (maks 160 karakter)"
+                            />
+                        </div>
+                        <div className="md:col-span-2">
+                            <label className="form-label">Image (SEO) - Thumbnail saat share di media sosial</label>
+                            <div className="flex items-start gap-4">
+                                {form.og_image && (
+                                    <img
+                                        src={getImageUrl(form.og_image)}
+                                        alt="OG Image"
+                                        className="w-40 h-24 object-cover rounded-lg border"
+                                    />
+                                )}
+                                <div className="flex-1">
+                                    <label className="btn btn-outline cursor-pointer inline-flex items-center">
+                                        <Upload className="w-4 h-4 mr-2" />
+                                        {form.og_image ? 'Ganti Image' : 'Upload Image'}
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={(e) => handleImageUpload(e, 'og_image')}
+                                            className="hidden"
+                                        />
+                                    </label>
+                                    <p className="text-xs text-gray-500 mt-2">
+                                        Rekomendasi: 1200 x 630 pixels (Facebook, LinkedIn)
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
