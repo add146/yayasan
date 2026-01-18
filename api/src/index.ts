@@ -40,7 +40,7 @@ app.use('*', cors({
 app.get('/', (c) => {
     return c.json({
         success: true,
-        message: 'Sekolah API - Cloudflare Workers',
+        message: 'Yayasan API - Cloudflare Workers',
         version: '1.0.0',
     });
 });
