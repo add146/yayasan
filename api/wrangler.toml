@@ -6,7 +6,7 @@ compatibility_date = "2024-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "yayasan-db"
-database_id = "43ab5a0a-a901-46b4-a57a-208fc03c0dc1"
+database_id = "7a8c5b7b-9ee9-4824-9ec3-686d65fcef7c"
 
 [[r2_buckets]]
 binding = "R2"
