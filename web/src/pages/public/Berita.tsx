@@ -63,7 +63,7 @@ export default function Berita() {
                 {/* Header */}
                 <div className="text-center mb-10">
                     <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">Berita & Informasi</h1>
-                    <p className="text-gray-600 mt-2">Berita dan informasi terbaru seputar sekolah</p>
+                    <p className="text-gray-600 mt-2">Berita dan informasi terbaru seputar yayasan</p>
                 </div>
 
                 {/* Search & Filter */}

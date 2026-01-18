@@ -52,7 +52,7 @@ export default function Kontak() {
                                 allowFullScreen
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
-                                title="Lokasi Sekolah"
+                                title="Lokasi Yayasan"
                             />
                         </div>
                     </div>

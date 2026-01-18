@@ -62,7 +62,7 @@ export default function Profil() {
             {/* About Section */}
             <section className="container mx-auto px-4 mb-16">
                 <div className="text-center mb-10">
-                    <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">Profil Sekolah</h1>
+                    <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">Profil Yayasan</h1>
                     <p className="text-gray-600 mt-2">Mengenal lebih dekat tentang kami</p>
                 </div>
                 <div className="prose prose-lg max-w-4xl mx-auto text-center">

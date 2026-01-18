@@ -1,12 +1,12 @@
 {
-  "name": "sekolah-api",
+  "name": "yayasan-api",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "db:migrate": "wrangler d1 execute sekolah-db --file=../database/schema.sql",
-    "db:seed": "wrangler d1 execute sekolah-db --file=../database/seed.sql"
+    "db:migrate": "wrangler d1 execute yayasan-db --file=../database/schema.sql",
+    "db:seed": "wrangler d1 execute yayasan-db --file=../database/seed.sql"
   },
   "dependencies": {
     "hono": "^4.0.0",

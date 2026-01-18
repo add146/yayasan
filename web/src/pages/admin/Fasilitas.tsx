@@ -14,7 +14,7 @@ import toast from 'react-hot-toast';
 
 // Available icons with names
 const facilityIcons: { name: string; icon: LucideIcon; label: string }[] = [
-    { name: 'school', icon: School, label: 'Sekolah' },
+    { name: 'school', icon: School, label: 'Yayasan' },
     { name: 'building', icon: Building, label: 'Gedung' },
     { name: 'book-open', icon: BookOpen, label: 'Perpustakaan' },
     { name: 'monitor', icon: Monitor, label: 'Lab Komputer' },
@@ -180,7 +180,7 @@ export default function AdminFasilitas() {
             <div className="flex items-center justify-between mb-6">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900">Kelola Fasilitas</h1>
-                    <p className="text-gray-600">Manajemen fasilitas sekolah</p>
+                    <p className="text-gray-600">Manajemen fasilitas yayasan</p>
                 </div>
                 <button onClick={() => openModal()} className="btn btn-primary">
                     <Plus className="w-4 h-4 mr-2" /> Tambah Fasilitas

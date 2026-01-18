@@ -73,7 +73,7 @@ export default function Pendaftaran() {
                             </div>
                             <h1 className="text-2xl font-bold text-gray-900 mb-2">Pendaftaran Berhasil!</h1>
                             <p className="text-gray-600 mb-6">
-                                Terima kasih telah mendaftar. Silakan tunggu informasi selanjutnya dari pihak sekolah.
+                                Terima kasih telah mendaftar. Silakan tunggu informasi selanjutnya dari pihak yayasan.
                             </p>
                             <div className="bg-gray-50 rounded-lg p-4 mb-6">
                                 <p className="text-sm text-gray-500">Kode Pendaftaran Anda:</p>

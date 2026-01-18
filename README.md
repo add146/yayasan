@@ -1,6 +1,6 @@
-# Sekolah - Cloudflare Stack
+# Yayasan - Cloudflare Stack
 
-Website Profil dan Manajemen Sekolah yang di-deploy ke Cloudflare Stack.
+Website Profil dan Manajemen Yayasan yang di-deploy ke Cloudflare Stack.
 
 ## Technology Stack
 
@@ -56,17 +56,17 @@ npm install
 wrangler login
 
 # Create D1 database
-wrangler d1 create sekolah-db
+wrangler d1 create yayasan-db
 # Update the database_id in wrangler.toml with the returned ID
 
 # Create R2 bucket
-wrangler r2 bucket create sekolah-files
+wrangler r2 bucket create yayasan-files
 
 # Apply database schema
-wrangler d1 execute sekolah-db --file=../database/schema.sql
+wrangler d1 execute yayasan-db --file=../database/schema.sql
 
 # Apply seed data
-wrangler d1 execute sekolah-db --file=../database/seed.sql
+wrangler d1 execute yayasan-db --file=../database/seed.sql
 
 # Run locally
 npm run dev

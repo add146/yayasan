@@ -14,7 +14,7 @@ export async function onRequest(context) {
 
     try {
         // Fetch konfigurasi from API
-        const apiUrl = 'https://sekolah-api.khibrohstudio.workers.dev/api/konfigurasi';
+        const apiUrl = 'https://yayasan-api.khibrohstudio.workers.dev/api/konfigurasi';
         const configResponse = await fetch(apiUrl);
 
         if (!configResponse.ok) {
@@ -28,10 +28,10 @@ export async function onRequest(context) {
         let html = await response.text();
 
         // Prepare OG meta tags
-        const siteName = config.nama_website || 'Sekolah';
-        const title = config.meta_title || config.nama_website || 'Sekolah';
-        const description = config.meta_description || config.deskripsi || 'Website Profil dan Manajemen Sekolah';
-        const ogImage = config.og_image ? `https://sekolah-api.khibrohstudio.workers.dev/api/upload/${config.og_image}` : '';
+        const siteName = config.nama_website || 'Yayasan';
+        const title = config.meta_title || config.nama_website || 'Yayasan';
+        const description = config.meta_description || config.deskripsi || 'Website Profil dan Manajemen Yayasan';
+        const ogImage = config.og_image ? `https://yayasan-api.khibrohstudio.workers.dev/api/upload/${config.og_image}` : '';
         const siteUrl = url.origin;
 
         // Create OG meta tags

@@ -137,7 +137,7 @@ export default function PublicLayout() {
                                 />
                             )}
                             <span className="font-bold text-xl text-gray-900">
-                                {config?.nama_website || 'Sekolah'}
+                                {config?.nama_website || 'Yayasan'}
                             </span>
                         </Link>
 
@@ -289,7 +289,7 @@ export default function PublicLayout() {
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div>
-                            <h3 className="font-bold text-lg mb-4">{config?.nama_website || 'Sekolah'}</h3>
+                            <h3 className="font-bold text-lg mb-4">{config?.nama_website || 'Yayasan'}</h3>
                             <p className="text-gray-400 text-sm">{config?.tagline}</p>
                         </div>
                         <div>
@@ -331,7 +331,7 @@ export default function PublicLayout() {
                         </div>
                     </div>
                     <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-                        &copy; {new Date().getFullYear()} {config?.nama_website || 'Sekolah'}. All rights reserved.
+                        &copy; {new Date().getFullYear()} {config?.nama_website || 'Yayasan'}. All rights reserved.
                     </div>
                 </div>
             </footer>

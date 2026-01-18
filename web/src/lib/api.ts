@@ -3,7 +3,7 @@ import axios from 'axios';
 // Use Workers API URL in production, empty string for local dev (uses Vite proxy)
 export const API_URL = window.location.hostname === 'localhost'
     ? ''
-    : 'https://sekolah-api.khibrohstudio.workers.dev';
+    : 'https://yayasan-api.khibrohstudio.workers.dev';
 
 // Helper function to get correct image URL from R2
 export const getImageUrl = (path: string | undefined | null): string => {

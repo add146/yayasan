@@ -1,13 +1,13 @@
-name = "sekolah-api"
+name = "yayasan-api"
 main = "src/index.ts"
 compatibility_date = "2024-01-01"
 
 
 [[d1_databases]]
 binding = "DB"
-database_name = "sekolah-db"
+database_name = "yayasan-db"
 database_id = "43ab5a0a-a901-46b4-a57a-208fc03c0dc1"
 
 [[r2_buckets]]
 binding = "R2"
-bucket_name = "sekolah-files"
+bucket_name = "yayasan-files"

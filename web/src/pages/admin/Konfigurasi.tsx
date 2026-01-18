@@ -349,7 +349,7 @@ export default function AdminKonfigurasi() {
                                 onChange={(e) => setForm({ ...form, visi: e.target.value })}
                                 className="form-input"
                                 rows={3}
-                                placeholder="Masukkan visi sekolah..."
+                                placeholder="Masukkan visi yayasan..."
                             />
                         </div>
                         <div>
@@ -359,7 +359,7 @@ export default function AdminKonfigurasi() {
                                 onChange={(e) => setForm({ ...form, misi: e.target.value })}
                                 className="form-input"
                                 rows={3}
-                                placeholder="Masukkan misi sekolah..."
+                                placeholder="Masukkan misi yayasan..."
                             />
                         </div>
                         <div>
@@ -369,7 +369,7 @@ export default function AdminKonfigurasi() {
                                 onChange={(e) => setForm({ ...form, rencana: e.target.value })}
                                 className="form-input"
                                 rows={3}
-                                placeholder="Masukkan rencana sekolah..."
+                                placeholder="Masukkan rencana yayasan..."
                             />
                         </div>
                     </div>
