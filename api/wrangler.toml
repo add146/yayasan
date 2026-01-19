@@ -13,3 +13,5 @@ database_id = "7a8c5b7b-9ee9-4824-9ec3-686d65fcef7c"
 [[r2_buckets]]
 binding = "R2"
 bucket_name = "yayasan-files"
+
+

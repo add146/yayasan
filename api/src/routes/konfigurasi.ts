@@ -76,6 +76,13 @@ konfigurasi.put('/', authMiddleware, adminMiddleware, async (c) => {
           warna_secondary = COALESCE(?, warna_secondary),
           poster1 = COALESCE(?, poster1),
           poster2 = COALESCE(?, poster2),
+          tampilkan_statistik = COALESCE(?, tampilkan_statistik),
+          tampilkan_konten = COALESCE(?, tampilkan_konten),
+          tampilkan_program = COALESCE(?, tampilkan_program),
+          tampilkan_berita = COALESCE(?, tampilkan_berita),
+          tampilkan_galeri = COALESCE(?, tampilkan_galeri),
+          tampilkan_fasilitas = COALESCE(?, tampilkan_fasilitas),
+          kategori_berita = COALESCE(?, kategori_berita),
           tanggal_update = datetime('now')
         WHERE id_konfigurasi = ?
       `).bind(
@@ -93,6 +100,8 @@ konfigurasi.put('/', authMiddleware, adminMiddleware, async (c) => {
                 body.program4_title, body.program4_desc,
                 body.warna_primary, body.warna_secondary,
                 body.poster1, body.poster2,
+                body.tampilkan_statistik, body.tampilkan_konten, body.tampilkan_program, body.tampilkan_berita, body.tampilkan_galeri, body.tampilkan_fasilitas,
+                body.kategori_berita,
                 existing.id_konfigurasi
             ).run();
         } else {

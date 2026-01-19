@@ -53,11 +53,21 @@ interface Konfigurasi {
     // Poster Pendaftaran
     poster1: string;
     poster2: string;
+    // Homepage Toggles
+    tampilkan_statistik: string;
+    tampilkan_konten: string;
+    tampilkan_program: string;
+    tampilkan_berita: string;
+    tampilkan_galeri: string;
+    tampilkan_fasilitas: string;
+    kategori_berita: string | null;
 }
 
 export default function AdminKonfigurasi() {
-    const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+    const [loading, setLoading] = useState(true);
+    // const [imageLoading, setImageLoading] = useState<string | null>(null);  // Unused for now
+    const [categories, setCategories] = useState<Array<{ id_kategori: number; nama_kategori: string }>>([]);
     const [form, setForm] = useState<Konfigurasi>({
         nama_website: '',
         tagline: '',
@@ -107,11 +117,33 @@ export default function AdminKonfigurasi() {
         // Poster Pendaftaran
         poster1: '',
         poster2: '',
+        // Homepage Toggles
+        tampilkan_statistik: 'Ya',
+        tampilkan_konten: 'Ya',
+        tampilkan_program: 'Ya',
+        tampilkan_berita: 'Ya',
+        tampilkan_galeri: 'Ya',
+        tampilkan_fasilitas: 'Ya',
+        kategori_berita: null,
     });
+
 
     useEffect(() => {
         fetchData();
+        fetchCategories();
     }, []);
+
+    const fetchCategories = async () => {
+        try {
+            const res = await fetch('/api/kategori');
+            const data = await res.json();
+            if (data.success) {
+                setCategories(data.data || []);
+            }
+        } catch (error) {
+            console.error('Failed to load categories:', error);
+        }
+    };
 
     const fetchData = async () => {
         setLoading(true);
@@ -267,7 +299,20 @@ export default function AdminKonfigurasi() {
 
                 {/* Statistik Homepage */}
                 <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                    <h2 className="text-lg font-bold text-gray-900 mb-4">Statistik Homepage</h2>
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-lg font-bold text-gray-900">Statistik Homepage</h2>
+                        <button
+                            type="button"
+                            onClick={() => setForm({ ...form, tampilkan_statistik: form.tampilkan_statistik === 'Ya' ? 'Tidak' : 'Ya' })}
+                            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${form.tampilkan_statistik === 'Ya' ? 'bg-green-600' : 'bg-gray-300'
+                                }`}
+                        >
+                            <span
+                                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${form.tampilkan_statistik === 'Ya' ? 'translate-x-6' : 'translate-x-1'
+                                    }`}
+                            />
+                        </button>
+                    </div>
                     <p className="text-sm text-gray-500 mb-4">Angka-angka yang ditampilkan di halaman depan</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div className="space-y-2">
@@ -339,7 +384,20 @@ export default function AdminKonfigurasi() {
 
                 {/* Konten Homepage */}
                 <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                    <h2 className="text-lg font-bold text-gray-900 mb-4">Konten Homepage</h2>
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-lg font-bold text-gray-900">Konten Homepage</h2>
+                        <button
+                            type="button"
+                            onClick={() => setForm({ ...form, tampilkan_konten: form.tampilkan_konten === 'Ya' ? 'Tidak' : 'Ya' })}
+                            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${form.tampilkan_konten === 'Ya' ? 'bg-green-600' : 'bg-gray-300'
+                                }`}
+                        >
+                            <span
+                                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${form.tampilkan_konten === 'Ya' ? 'translate-x-6' : 'translate-x-1'
+                                    }`}
+                            />
+                        </button>
+                    </div>
                     <p className="text-sm text-gray-500 mb-4">Teks yang ditampilkan di bagian Visi, Misi, Rencana</p>
                     <div className="space-y-4">
                         <div>
@@ -377,7 +435,20 @@ export default function AdminKonfigurasi() {
 
                 {/* Program Unggulan */}
                 <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                    <h2 className="text-lg font-bold text-gray-900 mb-4">Program Unggulan</h2>
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-lg font-bold text-gray-900">Program Unggulan</h2>
+                        <button
+                            type="button"
+                            onClick={() => setForm({ ...form, tampilkan_program: form.tampilkan_program === 'Ya' ? 'Tidak' : 'Ya' })}
+                            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${form.tampilkan_program === 'Ya' ? 'bg-green-600' : 'bg-gray-300'
+                                }`}
+                        >
+                            <span
+                                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${form.tampilkan_program === 'Ya' ? 'translate-x-6' : 'translate-x-1'
+                                    }`}
+                            />
+                        </button>
+                    </div>
                     <p className="text-sm text-gray-500 mb-4">4 program yang ditampilkan di homepage</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2 p-4 bg-gray-50 rounded-lg">
@@ -447,6 +518,108 @@ export default function AdminKonfigurasi() {
                                 className="form-input text-sm"
                                 placeholder="Deskripsi singkat"
                             />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Pengaturan Tampilan Homepage */}
+                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                    <h2 className="text-lg font-bold text-gray-900 mb-4">Pengaturan Tampilan Homepage</h2>
+                    <p className="text-sm text-gray-500 mb-6">Atur section mana yang ditampilkan di halaman depan</p>
+
+                    <div className="space-y-4">
+                        {/* Fasilitas Toggle */}
+                        <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <label className="font-medium text-gray-700">Fasilitas</label>
+                                <p className="text-xs text-gray-500 mt-1">Tampilkan section fasilitas di homepage</p>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setForm({ ...form, tampilkan_fasilitas: form.tampilkan_fasilitas === 'Ya' ? 'Tidak' : 'Ya' })}
+                                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${form.tampilkan_fasilitas === 'Ya' ? 'bg-green-600' : 'bg-gray-300'
+                                    }`}
+                            >
+                                <span
+                                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${form.tampilkan_fasilitas === 'Ya' ? 'translate-x-6' : 'translate-x-1'
+                                        }`}
+                                />
+                            </button>
+                        </div>
+
+                        {/* Galeri Toggle */}
+                        <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <label className="font-medium text-gray-700">Galeri</label>
+                                <p className="text-xs text-gray-500 mt-1">Tampilkan section galeri di homepage</p>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setForm({ ...form, tampilkan_galeri: form.tampilkan_galeri === 'Ya' ? 'Tidak' : 'Ya' })}
+                                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${form.tampilkan_galeri === 'Ya' ? 'bg-green-600' : 'bg-gray-300'
+                                    }`}
+                            >
+                                <span
+                                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${form.tampilkan_galeri === 'Ya' ? 'translate-x-6' : 'translate-x-1'
+                                        }`}
+                                />
+                            </button>
+                        </div>
+
+                        {/* Berita Toggle + Category Filter */}
+                        <div className="p-4 bg-gray-50 rounded-lg space-y-4">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <label className="font-medium text-gray-700">Berita</label>
+                                    <p className="text-xs text-gray-500 mt-1">Tampilkan section berita di homepage</p>
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => setForm({ ...form, tampilkan_berita: form.tampilkan_berita === 'Ya' ? 'Tidak' : 'Ya' })}
+                                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${form.tampilkan_berita === 'Ya' ? 'bg-green-600' : 'bg-gray-300'
+                                        }`}
+                                >
+                                    <span
+                                        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${form.tampilkan_berita === 'Ya' ? 'translate-x-6' : 'translate-x-1'
+                                            }`}
+                                    />
+                                </button>
+                            </div>
+
+                            {/* Category Filter */}
+                            <div className="pl-0">
+                                <label className="text-sm font-medium text-gray-700">Kategori Berita yang Ditampilkan</label>
+                                <p className="text-xs text-gray-500 mb-3">Kosongkan untuk menampilkan semua kategori</p>
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                                    {categories.map((cat) => {
+                                        const selectedIds = form.kategori_berita ? form.kategori_berita.split(',').map(Number) : [];
+                                        const isChecked = selectedIds.includes(cat.id_kategori);
+
+                                        return (
+                                            <label key={cat.id_kategori} className="flex items-center space-x-2 p-2 bg-white rounded cursor-pointer hover:bg-gray-100">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={isChecked}
+                                                    onChange={(e) => {
+                                                        let newIds = [...selectedIds];
+                                                        if (e.target.checked) {
+                                                            newIds.push(cat.id_kategori);
+                                                        } else {
+                                                            newIds = newIds.filter(id => id !== cat.id_kategori);
+                                                        }
+                                                        setForm({
+                                                            ...form,
+                                                            kategori_berita: newIds.length > 0 ? newIds.join(',') : null
+                                                        });
+                                                    }}
+                                                    className="form-checkbox h-4 w-4 text-blue-600"
+                                                />
+                                                <span className="text-sm text-gray-700">{cat.nama_kategori}</span>
+                                            </label>
+                                        );
+                                    })}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -760,3 +933,4 @@ export default function AdminKonfigurasi() {
         </div>
     );
 }
+

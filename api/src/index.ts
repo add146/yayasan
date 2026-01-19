@@ -25,6 +25,7 @@ import page from './routes/page';
 export interface Env {
     DB: D1Database;
     R2: R2Bucket;
+
     JWT_SECRET: string;
 }
 
@@ -66,6 +67,8 @@ app.route('/api/dashboard', dashboard);
 app.route('/api/menu', menu);
 app.route('/api/submenu', submenu);
 app.route('/api/page', page);
+
+
 
 // 404 handler
 app.notFound((c) => {
