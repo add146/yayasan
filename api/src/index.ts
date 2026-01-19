@@ -17,6 +17,9 @@ import jenjangPendidikan from './routes/jenjang';
 import halaman from './routes/halaman';
 import pesan from './routes/pesan';
 import dashboard from './routes/dashboard';
+import menu from './routes/menu';
+import submenu from './routes/submenu';
+import page from './routes/page';
 
 // Types
 export interface Env {
@@ -60,6 +63,9 @@ app.route('/api/jenjang-pendidikan', jenjangPendidikan);
 app.route('/api/halaman', halaman);
 app.route('/api/pesan', pesan);
 app.route('/api/dashboard', dashboard);
+app.route('/api/menu', menu);
+app.route('/api/submenu', submenu);
+app.route('/api/page', page);
 
 // 404 handler
 app.notFound((c) => {

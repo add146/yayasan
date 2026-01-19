@@ -13,6 +13,7 @@ import BeritaDetail from './pages/public/BeritaDetail';
 import Galeri from './pages/public/Galeri';
 import Profil from './pages/public/Profil';
 import HalamanDetail from './pages/public/HalamanDetail';
+import DynamicPage from './pages/public/DynamicPage';
 import Kontak from './pages/public/Kontak';
 import Pendaftaran from './pages/public/Pendaftaran';
 import Login from './pages/public/Login';
@@ -31,7 +32,7 @@ import AdminSlider from './pages/admin/Slider';
 import AdminGelombang from './pages/admin/Gelombang';
 import AdminJenjangPendidikan from './pages/admin/JenjangPendidikan';
 import AdminProfile from './pages/admin/Profile';
-import AdminHalaman from './pages/admin/Halaman';
+import AdminMenu from './pages/admin/Menu';
 import AdminPesan from './pages/admin/Pesan';
 
 // Components
@@ -55,6 +56,7 @@ function App() {
                 <Route path="/galeri" element={<Galeri />} />
                 <Route path="/profil" element={<Profil />} />
                 <Route path="/halaman/:slug" element={<HalamanDetail />} />
+                <Route path="/p/:slug" element={<DynamicPage />} />
                 <Route path="/kontak" element={<Kontak />} />
                 <Route path="/pendaftaran" element={<Pendaftaran />} />
                 <Route path="/login" element={<Login />} />
@@ -82,7 +84,7 @@ function App() {
                 <Route path="gelombang" element={<AdminGelombang />} />
                 <Route path="program" element={<AdminJenjangPendidikan />} />
                 <Route path="profile" element={<AdminProfile />} />
-                <Route path="halaman" element={<AdminHalaman />} />
+                <Route path="menu" element={<AdminMenu />} />
                 <Route path="pesan" element={<AdminPesan />} />
             </Route>
 

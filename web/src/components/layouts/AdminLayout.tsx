@@ -11,7 +11,7 @@ const sidebarLinks = [
     { to: '/admin/berita', icon: Newspaper, label: 'Berita' },
     { to: '/admin/galeri', icon: Image, label: 'Galeri' },
     { to: '/admin/slider', icon: Layers, label: 'Slider' },
-    { to: '/admin/halaman', icon: FileText, label: 'Halaman Profil' },
+    { to: '/admin/menu', icon: FileText, label: 'Menu Website' },
     { to: '/admin/pesan', icon: Mail, label: 'Pesan Kontak' },
     { to: '/admin/siswa', icon: GraduationCap, label: 'Siswa' },
     { to: '/admin/staff', icon: Users, label: 'Staff' },

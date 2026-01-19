@@ -2,6 +2,8 @@ name = "yayasan-api"
 main = "src/index.ts"
 compatibility_date = "2024-01-01"
 
+[vars]
+JWT_SECRET = "yayasan-secret-key-2026-change-in-production"
 
 [[d1_databases]]
 binding = "DB"

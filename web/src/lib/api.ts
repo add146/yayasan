@@ -177,3 +177,25 @@ export const uploadApi = {
     },
     delete: (path: string) => api.delete(`/upload/${path}`),
 };
+
+// Menu API
+export const menuApi = {
+    getAll: () => api.get('/menu'),
+    getAllAdmin: () => api.get('/menu/admin'),
+    create: (data: unknown) => api.post('/menu', data),
+    update: (id: number, data: unknown) => api.put(`/menu/${id}`, data),
+    delete: (id: number) => api.delete(`/menu/${id}`),
+};
+
+// Submenu API
+export const submenuApi = {
+    create: (data: unknown) => api.post('/submenu', data),
+    update: (id: number, data: unknown) => api.put(`/submenu/${id}`, data),
+    delete: (id: number) => api.delete(`/submenu/${id}`),
+};
+
+// Page API
+export const pageApi = {
+    getBySlug: (slug: string) => api.get(`/page/${slug}`),
+};
+

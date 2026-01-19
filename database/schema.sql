@@ -470,6 +470,11 @@ CREATE TABLE IF NOT EXISTS konfigurasi (
     icon VARCHAR(255),
     favicon VARCHAR(255),
     about_us TEXT,
+    visi TEXT,
+    misi TEXT,
+    rencana TEXT,
+    warna_primary VARCHAR(20),
+    warna_secondary VARCHAR(20),
     tanggal_update DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -483,8 +488,12 @@ CREATE TABLE IF NOT EXISTS menu (
     icon_menu VARCHAR(100),
     urutan INTEGER DEFAULT 0,
     status_menu VARCHAR(20) DEFAULT 'Aktif',
+    slug VARCHAR(255),
+    konten TEXT,
+    jenis VARCHAR(20) DEFAULT 'link',
     tanggal DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX IF NOT EXISTS idx_menu_slug ON menu(slug);
 
 -- Sub Menu
 CREATE TABLE IF NOT EXISTS sub_menu (
@@ -497,9 +506,13 @@ CREATE TABLE IF NOT EXISTS sub_menu (
     icon_sub_menu VARCHAR(100),
     urutan INTEGER DEFAULT 0,
     status_sub_menu VARCHAR(20) DEFAULT 'Aktif',
+    slug VARCHAR(255),
+    konten TEXT,
+    jenis VARCHAR(20) DEFAULT 'link',
     tanggal DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_menu) REFERENCES menu(id_menu)
 );
+CREATE UNIQUE INDEX IF NOT EXISTS idx_submenu_slug ON sub_menu(slug);
 
 -- Client/Mitra
 CREATE TABLE IF NOT EXISTS client (
