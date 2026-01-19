@@ -20,6 +20,7 @@ import dashboard from './routes/dashboard';
 import menu from './routes/menu';
 import submenu from './routes/submenu';
 import page from './routes/page';
+import fasilitas from './routes/fasilitas';
 
 // Types
 export interface Env {
@@ -67,6 +68,7 @@ app.route('/api/dashboard', dashboard);
 app.route('/api/menu', menu);
 app.route('/api/submenu', submenu);
 app.route('/api/page', page);
+app.route('/api/fasilitas', fasilitas);
 
 
 
